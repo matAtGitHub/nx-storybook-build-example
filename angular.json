@@ -20,7 +20,9 @@
               "apps/fe-app01/src/favicon.ico",
               "apps/fe-app01/src/assets"
             ],
-            "styles": ["apps/fe-app01/src/styles.scss"],
+            "styles": [
+              "apps/fe-app01/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -81,7 +83,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/fe-app01"],
+          "outputs": [
+            "coverage/apps/fe-app01"
+          ],
           "options": {
             "jestConfig": "apps/fe-app01/jest.config.js",
             "passWithNoTests": true
@@ -110,7 +114,66 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/fe-app01-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/fe-app01-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "shared-button": {
+      "projectType": "library",
+      "root": "libs/shared/button",
+      "sourceRoot": "libs/shared/button/src",
+      "prefix": "smallcorp",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/button/src/**/*.ts",
+              "libs/shared/button/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/shared/button"
+          ],
+          "options": {
+            "jestConfig": "libs/shared/button/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/button/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/shared-button",
+            "config": {
+              "configFolder": "libs/shared/button/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
           }
         }
       }
@@ -118,7 +181,8 @@
   },
   "cli": {
     "defaultCollection": "@nrwl/angular",
-    "packageManager": "yarn"
+    "packageManager": "yarn",
+    "analytics": "7c40008d-152d-4630-91be-379f85829a37"
   },
   "schematics": {
     "@nrwl/angular": {
